@@ -1,1 +1,2 @@
-.env
+# exclude stuff from pysimplegui cazzeggio project (PySimpleGUI cazzeggio/...)
+PySimpleGUI cazzeggio
