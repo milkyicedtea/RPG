@@ -25,8 +25,7 @@ if result == 'T':
         MyLayout.layout = [  [psg.Text('Open On Startup')],
             [psg.Button(button_text = 'On', size = (3, 1), button_color = ('white', 'green'), key = 'Oss_Edit')],
             [psg.Button(button_text = 'Add new product', key = 'Add_New_Product')],
-            [psg.Button('Exit', key = 'Exit_Program')]
-         ]
+            [psg.Button('Exit', key = 'Exit_Program')]]
         print('pp')
 elif result == "F":
         is_on = False
