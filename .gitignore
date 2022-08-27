@@ -24,5 +24,8 @@ Test_stuff
 # excluding the open on startup thing for now
 Windows_open_on_startup
 
+# exclude discord app
+Discord_Activity_Changer
+
 # won't exclude oos.json but probably will later on and create it on first program start/first login
 # oss.json
