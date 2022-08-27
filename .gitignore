@@ -1,11 +1,28 @@
 # exclude stuff from Private
 Private
 
-# exlude pycache or bad
+# exclude pycache or bad
 __pycache__
 
 # exclude every .env or also bad
 .env
+
+# exclude files from .exe builds
+*.spec
+build
+
+# Old project
+Notes_WebApp
+Alarm_Clock_App
+
+# exclude Price App for now
+Price_App
+
+# exclude tests
+Test_stuff
+
+# excluding the open on startup thing for now
+Windows_open_on_startup
 
 # won't exclude oos.json but probably will later on and create it on first program start/first login
 # oss.json
