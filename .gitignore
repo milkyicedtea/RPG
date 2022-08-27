@@ -27,5 +27,9 @@ Windows_open_on_startup
 # exclude discord app
 Discord_Activity_Changer
 
+# exclude rar and zip files
+*.rar
+*.zip
+
 # won't exclude oos.json but probably will later on and create it on first program start/first login
 # oss.json
