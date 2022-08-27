@@ -6,6 +6,7 @@
 ## Installation
 
 There is none, just download the .exe release and run it.
+> Alternatively, you can find the compiled .exe file under RPG/GUI/dist/
 
 ## Requirements
 > The code was tested and ran using python 3.10.2. Older versions might not work. Newer should probably be fine but report in case you run into any error :)
