@@ -25,3 +25,6 @@ $ python .\RPG\GUI\rpgGUI.py
 
 - GitHub: [PySimpleGUI](https://github.com/PySimpleGUI)
 - Website: [PySimpleGUI.org](https://PySimpleGUI.org)
+
+## Extra
+If something breaks, please let me know by messaging on discord (preferrably) or twitter. You can find both on my github profile
