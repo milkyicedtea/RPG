@@ -16,7 +16,7 @@ pip install PySimpleGUI
 
 ## Run
 ```shell
-$ python .\RPG\GUI\rpgGUI.py
+$ python .\RPG\rpgGUI.py
 ```
 
 ## Author
@@ -29,3 +29,6 @@ $ python .\RPG\GUI\rpgGUI.py
 
 ## Extra
 If something breaks, please let me know by messaging on discord (preferrably) or twitter. You can find both on my github profile
+
+## No GUI Version
+> It was more convenient for me to drop the version, so it is not as updated as the version with a GUI (it's much much simple). From version 1.1 it will be removed, but you can always find it in the 1.0 source code if you need it :)
