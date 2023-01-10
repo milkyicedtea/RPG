@@ -28,7 +28,11 @@ $ python .\RPG\rpgGUI.py
 - Website: [PySimpleGUI.org](https://PySimpleGUI.org)
 
 ## Extra
-If something breaks, please let me know by messaging on discord (preferrably) or twitter. You can find both on my github profile
+If something breaks, please let me know by messaging on discord or open a github issue (preferrably these 2) or twitter (i don't check as much). You can find both my discord and twitter on my github profile
 
 ## No GUI Version
-> It was more convenient for me to drop the version, so it is not as updated as the version with a GUI (it's much much simpler). From version 1.1 it will be removed, but you can always find it in the 1.0 source code if you need it :)
+> It was more convenient for me to drop this for every release, so it will not be as updated as the one with a GUI (it's much much simpler for me). From release 1.1 i will only add it for major version/fixes. You can ask me for a specific no GUI release only if you really really need it (ex: project that needs this).
+
+## Using this in other Github Projects
+Please ask me! I will most likely be happy to say yes, but please just ask before you use this, it really doesn't take much to do! You can use my discord (preferrably) or twitter :)
+P.S.: Please don't open any issue regarding this as i will probably close them. I'd like anything related to this to be discussed in private.
