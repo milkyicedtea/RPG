@@ -3,62 +3,99 @@ import os
 import string
 import PySimpleGUI as psg
 import random
-from dataclasses import dataclass
+from Utils.passwordClasses import PasswordExtra, PasswordProperties
 
-#dataclass because string sucks
-@dataclass
-class PasswordExtra:
-    minus:str = '-'
-    underline: str = '_'
-    symbols:str = '!@#$%&'
-    parenthesis:str = r'()[]{}'
+#create pass_prop object
+pass_prop = PasswordProperties()
 
+#password generating class
+class PasswordGen:
+    def __init__(self, prop) -> None:
+        self.prop = prop
+        self.value:str = ''
 
-#dataclass for PW properties
-@dataclass
-class PasswordProperties:
-    lenght: int = 10
-    AllUppercase: bool = False
-    UseNumbers: bool = False
-    UseMinus:bool = False
-    UseUnderline:bool = False
-    UseSymbols: bool = False
-    UseParenthesis:bool = False
-    value: str = ''
+    def generate(self, usable_charaters):
+        for x in range(self.prop.lenght):
+            self.value = self.value + random.choice(usable_characters)
+
+    def checkAllUpperCase(self) -> bool:
+        f_res: bool = False
+        if self.prop.AllUppercase is True:
+            for lenght in range(self.prop.lenght):
+                for chars in range(len(string.ascii_uppercase)):
+                    if self.value[lenght] == string.ascii_uppercase[chars]:
+                        f_res = True
+        else:
+            f_res = True
+        #print(f'checkAllUpperCase is {f_res}')
+        return f_res
+                
+    def checkNumbers(self) -> bool:
+        f_res: bool = False
+        if self.prop.UseNumbers == True:
+            for lenght in range(self.prop.lenght):
+                for numbers in range(len(string.digits)):
+                    if self.value[lenght] == string.digits[numbers]:
+                        f_res = True
+        else:
+            f_res = True
+
+        #print(f'checkNumbers is {f_res}')
+        return f_res
+    
+    def checkSymbols(self) -> bool:
+        f_res: bool = False
+        if self.prop.UseSymbols == True:
+            for lenght in range(self.prop.lenght):
+                for symbols in range(len(extra.symbols)):
+                    if self.value[lenght] == extra.symbols[symbols]:
+                        f_res = True
+        else:
+            f_res = True
+        
+        #print(f'checkSymbols is {f_res}')
+        return f_res
+    
+    def checkParenthesis(self) -> bool:
+        f_res: bool = False
+        if self.prop.UseParenthesis == True:
+            for lenght in range(self.prop.lenght):
+                for parenthesis in range(len(extra.parenthesis)):
+                    if self.value[lenght] == extra.parenthesis[parenthesis]:
+                        f_res = True
+        else:
+            f_res = True
+        
+        #print(f'checkParenthesis is {f_res}')
+        return f_res
+        
+        
+#change pwd properties if needed
+pwGen = PasswordGen(pass_prop)
+extra = PasswordExtra()
 
 #class for layout cause why not
-class MyLayout():
-    layout = [[]]
 
-MyLayout.layout = [#[psg.Text('Open On Startup')],
-            [psg.Text('Please enter the password lenght. Default password lenght is 10. Maxmium value is 100'), psg.InputText()],
+layout = [[]]
+
+layout = [#[psg.Text('Open On Startup')],
+            [psg.Text('Please enter the password lenght. Minimum and default lenght is 12 characters. Maximum value is 200'), psg.InputText(default_text ='12')],
             [psg.Button(button_text = 'All Uppercase', size = (15, 1), button_color = ('white', 'red'), key = 'AllUppercaseUpdate')],
             [psg.Button(button_text = 'Use Numbers', size = (15, 1), button_color = ('white', 'red'), key = 'UseNumbersUpdate')],
-            [psg.Button(button_text = 'Use Minus', size = (15, 1), button_color = ('white', 'red'), key = 'UseMinusUpdate')],
-            [psg.Button(button_text = 'Use Underline', size = (15, 1), button_color = ('white', 'red'), key = 'UseUnderlineUpdate')],
             [psg.Button(button_text = 'Use Symbols', size = (15, 1), button_color = ('white', 'red'), key = 'UseSymbolsUpdate')],
             [psg.Button(button_text = 'Use Parenthesis', size = (15, 1), button_color = ('white', 'red'), key = 'UseParenthesisUpdate')],
             [psg.Button(button_text = 'Generate Password', size = (15, 1), key = 'PrintPw')],
             [psg.Button('Exit', key = 'Exit_Program')],
-            [psg.Text(PasswordProperties.value, key = 'PWV')]]
+            [psg.InputText(pwGen.value, key = 'PWV')],
+            [psg.Text(f'Password lenght: ', key = 'PWL')]]
 
-#create password object
-password = PasswordProperties()
-extra = PasswordExtra()
-
-window = psg.Window('Password Generator', MyLayout.layout, size = (1000, 600),  resizable = True, grab_anywhere_using_control = True, finalize = True)
+#initialize window
+window = psg.Window('Password Generator', layout, size = (1000, 600),  resizable = True, grab_anywhere_using_control = True, finalize = False)
 counter = 1
 
 while True:
     
     event, values = window.read()
-
-    #input password lenght
-    # print(values[0])
-    if values[0] == None or values[0] == '' or int(values[0]) > 100:
-        password.lenght = 10
-    elif int(values[0]) > 10:
-        password.lenght = int(values[0])
 
     # Break if window is closed or 'Exit_Program is called
     if event == psg.WIN_CLOSED or event == 'Exit_Program':
@@ -66,94 +103,79 @@ while True:
 
     #uppercase
     elif event == 'AllUppercaseUpdate':
-        if password.AllUppercase is False:
+        if pass_prop.AllUppercase is False:
             window['AllUppercaseUpdate'].update(button_color = ('white','green'))
-            password.AllUppercase = True
-        elif password.AllUppercase is True:
+            pass_prop.AllUppercase = True
+        elif pass_prop.AllUppercase is True:
             window['AllUppercaseUpdate'].update(button_color = ('white','red'))
-            password.AllUppercase = False
+            pass_prop.AllUppercase = False
 
     #numbers
     elif event == 'UseNumbersUpdate':
-        if password.UseNumbers is False:
+        if pass_prop.UseNumbers is False:
             window['UseNumbersUpdate'].update(button_color = ('white','green'))
-            password.UseNumbers = True
-        elif password.UseNumbers is True:
+            pass_prop.UseNumbers = True
+        elif pass_prop.UseNumbers is True:
             window['UseNumbersUpdate'].update(button_color = ('white','red'))
-            password.UseNumbers = False
-
-    #minus
-    elif event == 'UseMinusUpdate':
-        if password.UseMinus is False:
-            window['UseMinusUpdate'].update(button_color = ('white','green'))
-            password.UseMinus = True
-        elif password.UseMinus is True:
-            window['UseNumbersUpdate'].update(button_color = ('white','red'))
-            password.UseMinus = False
-
-    #underline
-    elif event == 'UseUnderlineUpdate':
-        if password.UseUnderline is False:
-            window['UseUnderlineUpdate'].update(button_color = ('white','green'))
-            password.UseUnderline = True
-        elif password.UseUnderline is True:
-            window['UseUnderlineUpdate'].update(button_color = ('white','red'))
-            password.UseUnderline = False
+            pass_prop.UseNumbers = False
 
     elif event == 'UseSymbolsUpdate':
-        if password.UseSymbols is False:
+        if pass_prop.UseSymbols is False:
             window['UseSymbolsUpdate'].update(button_color = ('white','green'))
-            password.UseSymbols = True
-        elif password.UseSymbols is True:
+            pass_prop.UseSymbols = True
+        elif pass_prop.UseSymbols is True:
             window['UseSymbolsUpdate'].update(button_color = ('white','red'))
-            password.UseSymbols = False
+            pass_prop.UseSymbols = False
 
     #parenthesis
     elif event == 'UseParenthesisUpdate':
-        if password.UseParenthesis is False:
+        if pass_prop.UseParenthesis is False:
             window['UseParenthesisUpdate'].update(button_color = ('white','green'))
-            password.UseParenthesis = True
-        elif password.UseParenthesis is True:
+            pass_prop.UseParenthesis = True
+        elif pass_prop.UseParenthesis is True:
             window['UseParenthesisUpdate'].update(button_color = ('white','red'))
-            password.UseParenthesis = False
+            pass_prop.UseParenthesis = False
 
     #print it or even more pepega
     elif event == "PrintPw":
+
+        #input pass_prop lenght
+        if (int(values[0]) < 12) or (int(values[0]) > 200):
+            pass_prop.lenght = 12
+        elif int(values[0]) > 12:
+            pass_prop.lenght = int(values[0])
+
         #create list or boom?
         usable_characters = []
 
-        if password.AllUppercase is True:
+        if pass_prop.AllUppercase is True:
             usable_characters = string.ascii_uppercase
             # print('pw_alluppercase is 1')
-        elif password.AllUppercase is False:
+        elif pass_prop.AllUppercase is False:
             usable_characters = string.ascii_letters
             # print('pw_alluppercase is 0')
 
 
-        if password.UseNumbers is True:
+        if pass_prop.UseNumbers is True:
             usable_characters += string.digits
 
-        if password.UseMinus is True:
-            usable_characters += extra.minus
-
-        if password.UseUnderline is True:
-            usable_characters += extra.underline
-
-        if password.UseSymbols is True:
+        if pass_prop.UseSymbols is True:
             usable_characters += extra.symbols
 
-        if password.UseParenthesis is True:
+        if pass_prop.UseParenthesis is True:
             usable_characters += extra.parenthesis
 
+        # make sure it's empty before generating a new one
+        pwGen.value = ''
+        pwGen.generate(usable_characters)
 
-        #make sure it's empty before generating a new one!
-        password.value = ''
-
-        #generate password or pepega lmao
-
-        for x in range(password.lenght):
-            password.value = password.value + random.choice(usable_characters)
-        #print(f'Your password is: {password.value}')
-        window['PWV'].update(f'Your password is: {password.value}')
+        while (pwGen.checkAllUpperCase() == False or pwGen.checkNumbers() == False or pwGen.checkParenthesis() == False or pwGen.checkSymbols() == False):
+            #print(pwGen.value)
+            pwGen.value = ''
+            pwGen.generate(usable_characters)
+        
+        #print(f'Your password is: {pwGen.value}')
+        window['PWV'].update(f'Your password is: {pwGen.value}')
+        window['PWL'].update(f'Password lenght: {len(pwGen.value)}')
 
 window.close()

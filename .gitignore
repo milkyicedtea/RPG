@@ -1,3 +1,6 @@
+#exclude VSC files
+.vscode
+
 # exclude stuff from Private
 Private
 
@@ -20,6 +23,7 @@ Price_App
 
 # exclude tests
 Test_stuff
+test.py
 
 # excluding the open on startup thing for now
 Windows_open_on_startup
