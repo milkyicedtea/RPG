@@ -1,7 +1,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
-# Random pass_prop generator
-> A very simple pass_prop generator i made for fun using python (Using [PySimpleGUI](https://github.com/PySimpleGUI) framework)
+# Random password generator 
+> A very simple password generator i made for fun using python (Using [PySimpleGUI](https://github.com/PySimpleGUI) framework)
  
 ## Installation
 
