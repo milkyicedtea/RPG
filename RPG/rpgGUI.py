@@ -148,6 +148,7 @@ while True:
         #create list or boom?
         usable_characters = []
 
+        # usable letters check
         if pass_prop.AllUppercase is True:
             usable_characters = string.ascii_uppercase
             # print('pw_alluppercase is 1')
@@ -155,19 +156,21 @@ while True:
             usable_characters = string.ascii_letters
             # print('pw_alluppercase is 0')
 
-
+        # usable numbers
         if pass_prop.UseNumbers is True:
             usable_characters += string.digits
 
+        # usable symbols
         if pass_prop.UseSymbols is True:
             usable_characters += extra.symbols
 
+        # usable parenthesis
         if pass_prop.UseParenthesis is True:
             usable_characters += extra.parenthesis
 
         # make sure it's empty before generating a new one
         pwGen.value = ''
-        pwGen.generate(usable_characters)
+        pwGen.generate(usable_characters) 
 
         while (pwGen.checkAllUpperCase() == False or pwGen.checkNumbers() == False or pwGen.checkParenthesis() == False or pwGen.checkSymbols() == False):
             #print(pwGen.value)
