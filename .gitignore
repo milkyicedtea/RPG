@@ -41,5 +41,8 @@ Lib
 Scripts
 pyvenv.cfg
 
+# exclude portable python
+Portable Python
+
 # won't exclude oos.json but probably will later on and create it on first program start/first login
 # oss.json

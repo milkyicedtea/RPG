@@ -14,7 +14,7 @@ class PasswordGen:
         self.prop = prop
         self.value:str = ''
 
-    def generate(self, usable_charaters):
+    def generate(self, usable_characters):
         for x in range(self.prop.lenght):
             self.value = self.value + random.choice(usable_characters)
 
@@ -93,92 +93,97 @@ layout = [#[psg.Text('Open On Startup')],
 window = psg.Window('Password Generator', layout, size = (1000, 600),  resizable = True, grab_anywhere_using_control = True, finalize = False)
 counter = 1
 
-while True:
-    
-    event, values = window.read()
 
-    # Break if window is closed or 'Exit_Program is called
-    if event == psg.WIN_CLOSED or event == 'Exit_Program':
-        break
-
-    #uppercase
-    elif event == 'AllUppercaseUpdate':
-        if pass_prop.AllUppercase is False:
-            window['AllUppercaseUpdate'].update(button_color = ('white','green'))
-            pass_prop.AllUppercase = True
-        elif pass_prop.AllUppercase is True:
-            window['AllUppercaseUpdate'].update(button_color = ('white','red'))
-            pass_prop.AllUppercase = False
-
-    #numbers
-    elif event == 'UseNumbersUpdate':
-        if pass_prop.UseNumbers is False:
-            window['UseNumbersUpdate'].update(button_color = ('white','green'))
-            pass_prop.UseNumbers = True
-        elif pass_prop.UseNumbers is True:
-            window['UseNumbersUpdate'].update(button_color = ('white','red'))
-            pass_prop.UseNumbers = False
-
-    elif event == 'UseSymbolsUpdate':
-        if pass_prop.UseSymbols is False:
-            window['UseSymbolsUpdate'].update(button_color = ('white','green'))
-            pass_prop.UseSymbols = True
-        elif pass_prop.UseSymbols is True:
-            window['UseSymbolsUpdate'].update(button_color = ('white','red'))
-            pass_prop.UseSymbols = False
-
-    #parenthesis
-    elif event == 'UseParenthesisUpdate':
-        if pass_prop.UseParenthesis is False:
-            window['UseParenthesisUpdate'].update(button_color = ('white','green'))
-            pass_prop.UseParenthesis = True
-        elif pass_prop.UseParenthesis is True:
-            window['UseParenthesisUpdate'].update(button_color = ('white','red'))
-            pass_prop.UseParenthesis = False
-
-    #print it or even more pepega
-    elif event == "PrintPw":
-
-        #input pass_prop lenght
-        if (int(values[0]) < 12) or (int(values[0]) > 200):
-            pass_prop.lenght = 12
-        elif int(values[0]) > 12:
-            pass_prop.lenght = int(values[0])
-
-        #create list or boom?
-        usable_characters = []
-
-        # usable letters check
-        if pass_prop.AllUppercase is True:
-            usable_characters = string.ascii_uppercase
-            # print('pw_alluppercase is 1')
-        elif pass_prop.AllUppercase is False:
-            usable_characters = string.ascii_letters
-            # print('pw_alluppercase is 0')
-
-        # usable numbers
-        if pass_prop.UseNumbers is True:
-            usable_characters += string.digits
-
-        # usable symbols
-        if pass_prop.UseSymbols is True:
-            usable_characters += extra.symbols
-
-        # usable parenthesis
-        if pass_prop.UseParenthesis is True:
-            usable_characters += extra.parenthesis
-
-        # make sure it's empty before generating a new one
-        pwGen.value = ''
-        pwGen.generate(usable_characters) 
-
-        while (pwGen.checkAllUpperCase() == False or pwGen.checkNumbers() == False or pwGen.checkParenthesis() == False or pwGen.checkSymbols() == False):
-            #print(pwGen.value)
-            pwGen.value = ''
-            pwGen.generate(usable_characters)
+def main_app():
+    while True:
         
-        #print(f'Your password is: {pwGen.value}')
-        window['PWV'].update(f'Your password is: {pwGen.value}')
-        window['PWL'].update(f'Password lenght: {len(pwGen.value)}')
+        event, values = window.read()
 
-window.close()
+        # Break if window is closed or 'Exit_Program is called
+        if event == psg.WIN_CLOSED or event == 'Exit_Program':
+            break
+
+        #uppercase
+        elif event == 'AllUppercaseUpdate':
+            if pass_prop.AllUppercase is False:
+                window['AllUppercaseUpdate'].update(button_color = ('white','green'))
+                pass_prop.AllUppercase = True
+            elif pass_prop.AllUppercase is True:
+                window['AllUppercaseUpdate'].update(button_color = ('white','red'))
+                pass_prop.AllUppercase = False
+
+        #numbers
+        elif event == 'UseNumbersUpdate':
+            if pass_prop.UseNumbers is False:
+                window['UseNumbersUpdate'].update(button_color = ('white','green'))
+                pass_prop.UseNumbers = True
+            elif pass_prop.UseNumbers is True:
+                window['UseNumbersUpdate'].update(button_color = ('white','red'))
+                pass_prop.UseNumbers = False
+
+        elif event == 'UseSymbolsUpdate':
+            if pass_prop.UseSymbols is False:
+                window['UseSymbolsUpdate'].update(button_color = ('white','green'))
+                pass_prop.UseSymbols = True
+            elif pass_prop.UseSymbols is True:
+                window['UseSymbolsUpdate'].update(button_color = ('white','red'))
+                pass_prop.UseSymbols = False
+
+        #parenthesis
+        elif event == 'UseParenthesisUpdate':
+            if pass_prop.UseParenthesis is False:
+                window['UseParenthesisUpdate'].update(button_color = ('white','green'))
+                pass_prop.UseParenthesis = True
+            elif pass_prop.UseParenthesis is True:
+                window['UseParenthesisUpdate'].update(button_color = ('white','red'))
+                pass_prop.UseParenthesis = False
+
+        #print it or even more pepega
+        elif event == "PrintPw":
+
+            #input pass_prop lenght
+            if (int(values[0]) < 12) or (int(values[0]) > 200):
+                pass_prop.lenght = 12
+            elif int(values[0]) > 12:
+                pass_prop.lenght = int(values[0])
+
+            #create list or boom?
+            usable_characters = []
+
+            # usable letters check
+            if pass_prop.AllUppercase is True:
+                usable_characters = string.ascii_uppercase
+                # print('pw_alluppercase is 1')
+            elif pass_prop.AllUppercase is False:
+                usable_characters = string.ascii_letters
+                # print('pw_alluppercase is 0')
+
+            # usable numbers
+            if pass_prop.UseNumbers is True:
+                usable_characters += string.digits
+
+            # usable symbols
+            if pass_prop.UseSymbols is True:
+                usable_characters += extra.symbols
+
+            # usable parenthesis
+            if pass_prop.UseParenthesis is True:
+                usable_characters += extra.parenthesis
+
+            # make sure it's empty before generating a new one
+            pwGen.value = ''
+            pwGen.generate(usable_characters) 
+
+            while (pwGen.checkAllUpperCase() == False or pwGen.checkNumbers() == False or pwGen.checkParenthesis() == False or pwGen.checkSymbols() == False):
+                #print(pwGen.value)
+                pwGen.value = ''
+                pwGen.generate(usable_characters)
+            
+            #print(f'Your password is: {pwGen.value}')
+            window['PWV'].update(f'Your password is: {pwGen.value}')
+            window['PWL'].update(f'Password lenght: {len(pwGen.value)}')
+
+    window.close()
+
+if __name__ == "__main__":
+    main_app()
