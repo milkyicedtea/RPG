@@ -1,3 +1,11 @@
+###############
+#             #
+#     RPG     #
+#             #
+###############
+
+# Some comments might be old!
+
 #import all the stuff or bad
 import os
 import string
@@ -74,8 +82,7 @@ class PasswordGen:
 pwGen = PasswordGen(pass_prop)
 extra = PasswordExtra()
 
-#class for layout cause why not
-
+#initialize layout
 layout = [[]]
 
 layout = [#[psg.Text('Open On Startup')],
