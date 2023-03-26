@@ -4,6 +4,11 @@
 
 > A very simple password generator i made for fun using python (Using [PySimpleGUI](https://github.com/PySimpleGUI) framework)
 
+<details>
+  <summary>Screenshots:</summary>
+    <img src = "https://i.ibb.co/mC1gVhc/image.png">
+</details>
+
 ## Disclaimer
 
 > I don't recommend using this to actually generate passwords you use, as i don't know if this is secure enough (even though it uses `secrets` module), since it uses very simple algorithms to generate the passwords.
