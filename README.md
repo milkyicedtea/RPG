@@ -43,7 +43,7 @@ From source code;
 $ python .\RPG\rpgGUI.py
 ```
 
-Or download the executable found in the release or in [here](https://github.com/milkyicedtea/Random-password-generator/tree/main/dist)
+Or download the executable found in the release or in [here](dist)
 
 ## Author
 
