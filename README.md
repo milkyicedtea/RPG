@@ -1,6 +1,6 @@
 [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
 
-# Random password generator
+# RPG
 
 > A very simple password generator i made for fun using python (Using [PySimpleGUI](https://github.com/PySimpleGUI) framework)
 
